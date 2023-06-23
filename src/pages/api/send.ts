@@ -6,6 +6,9 @@ export default function handler(
   res: NextApiResponse
 ) {
   let urlParam = req.url?.split('=')[1]
+  if(!urlParam?.includes('http')) {
+    urlParam = 'http://' + urlParam
+  }
   if(urlParam) {
     fetch(urlParam, ).then((response) => response.text()).then((response) => {
       res.status(200).json({html: response})
